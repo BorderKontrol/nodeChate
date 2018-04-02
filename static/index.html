@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/all.min.css">
+  <title>nodeChate</title>
+</head>
+<body>
+  <div class="container fill px-0">
+    <div id="wrap">
+      <div class="row headline mx-0">
+        <div class="col">
+          <h1>nodeChate</h1>
+        </div>
+      </div>
+      <ul class="list-unstyled" id="messages">
+      </ul>
+    </div>
+    <footer class="navbar-fixed-bottom">
+      <div class="container text-center text-md-left py-4 bg-primary">
+       <form class="form-inline">
+        <label class="sr-only" for="txt">Chatbox</label>
+        <div class="input-group pl-0 col-8 col-md-10 col-xl-11">
+          <input type="text" class="form-control" placeholder="Enter a username" id="txt" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-dark col-4 col-md-2 col-xl-1">Send</button>
+      </form> 
+    </div>
+  </footer>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/all.min.js"></script>
+</body>
+</html>
