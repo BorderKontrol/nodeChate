@@ -18,4 +18,4 @@ io.on('connection', function(socket){
 	});
 });
 
-http.listen(process.argv[2]);
+http.listen(config.port);
