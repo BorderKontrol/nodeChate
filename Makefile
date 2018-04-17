@@ -5,18 +5,25 @@ NODE="node"
 NPM="npm"
 TMPDIR := $(shell mktemp -d)
 
-all: builddirs npm_dependencies htmlmin min-css min-js
+all: dirs npm_dependencies min-html min-css min-js
 
-htmlmin:
+min-html:
 	$(NODE) $(CURDIR)/node_modules/.bin/html-minifier --collapse-whitespace --decode-entities --remove-attribute-quotes --remove-comments \
 	$(CURDIR)/static/index.html \
 	> $(CURDIR)/build/index.html
+	$(NODE) $(CURDIR)/node_modules/.bin/html-minifier --collapse-whitespace --decode-entities --remove-attribute-quotes --remove-comments \
+	$(CURDIR)/static/login.html \
+	> $(CURDIR)/build/login.html
+	$(NODE) $(CURDIR)/node_modules/.bin/html-minifier --collapse-whitespace --decode-entities --remove-attribute-quotes --remove-comments \
+	$(CURDIR)/static/register.html \
+	> $(CURDIR)/build/register.html
 	
 min-css:
 	$(NODE) $(CURDIR)/node_modules/.bin/purifycss -w ['.list-unstyled', '.media', '.my-*', '.rounded', '.small', '.message', '.media-body', '.mt-*', '.mb-*'] -m \
 	$(CURDIR)/node_modules/bootstrap/dist/css/bootstrap.css \
 	$(CURDIR)/static/own.css \
 	$(CURDIR)/static/index.html \
+	$(CURDIR)/static/login.html \
 	> $(CURDIR)/build/all.min.css
 
 min-js:
@@ -32,5 +39,5 @@ clean:
 npm_dependencies:
 	$(NPM) install
 
-builddirs:
-	mkdir -p $(CURDIR)/build
+dirs:
+	mkdir -p $(CURDIR)/build $(CURDIR)/private

@@ -20,16 +20,21 @@
   },
   "homepage": "https://github.com/BorderKontrol/nodeChate#readme",
   "devDependencies": {
-    "html-minifier": "^3.5.10",
-    "purify-css": "^1.2.5",
-    "uglify-js": "^3.3.14"
+    "html-minifier": "^3.5.15",
+    "purify-css": "^1.2.6",
+    "uglify-js": "^3.3.21"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "@phc/argon2": "^1.0.5",
+    "bootstrap": "^4.1.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "express-validator": "^5.1.2",
+    "fast-ratelimit": "^2.1.8",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.1",
-    "socket.io": "^2.0.4",
+    "nosql": "^6.1.0",
+    "popper.js": "^1.14.3",
+    "socket.io": "^2.1.0",
     "tooltip.js": "^1.2.0"
   }
 }

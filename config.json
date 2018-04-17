@@ -1,4 +1,9 @@
 {
-	"no_reverse_proxy": true,
-	"port": 6553
+	"reverse_proxy": false,
+	"secure_cookies": false,
+	"userdb": "./userdb.nosql",
+	"cookiedb": "./cookiedb.nosql",
+	"port": 6553,
+	"message_limit": 20,
+	"query_limit": 10
 }
