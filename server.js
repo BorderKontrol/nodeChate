@@ -5,7 +5,6 @@ var io = require('socket.io')(http);
 var cookieNode = require('cookie');
 var cookieParser = require('cookie-parser');
 var nosql = require('nosql');
-var ratelimiter = require("lambda-rate-limiter");
 var crypto = require('crypto');
 var config = require('./config.json');
 var userdb = nosql.load(config.userdb);
