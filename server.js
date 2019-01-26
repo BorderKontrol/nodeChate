@@ -5,7 +5,7 @@ var io = require('socket.io')(http);
 var cookieNode = require('cookie');
 var cookieParser = require('cookie-parser');
 var nosql = require('nosql');
-var FastRateLimit = require("fast-ratelimit").FastRateLimit;
+var ratelimiter = require("lambda-rate-limiter");
 var crypto = require('crypto');
 var config = require('./config.json');
 var userdb = nosql.load(config.userdb);
@@ -17,14 +17,14 @@ if (config.reverse_proxy) {
 	app.set('trust proxy', 'loopback');
 }
 
-var messageLimiter = new FastRateLimit({
-	threshold : config.message_limit,
-	ttl       : 10
+const messageLimiter = require('lambda-rate-limiter')({
+	interval: 10000,
+	uniqueTokenPerInterval: 128
 });
 
-var queryLimiter = new FastRateLimit({
-	threshold : config.query_limit,
-	ttl       : 60
+const queryLimiter = require('lambda-rate-limiter')({
+	interval: 60000,
+	uniquteTokenPerInterval: 512,
 });
 
 app.use(cookieParser(secret));
@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
 		else {
 			socket.emit('username', username);
 			socket.on('chat message', (msg) => {
-				messageLimiter.consume(socket.id).then(() => {
+				messageLimiter.check(config.message_limit, socket.id).then(() => {
 					console.log(username + ': ' + msg);
 					socket.broadcast.emit('chat message', msg, username);
 				}).catch(() => {
@@ -58,7 +58,7 @@ app.use(express.urlencoded({
 }));
 
 app.post('/login', (req, res) => {
-	queryLimiter.consume(req.ip).then(() => {
+	queryLimiter.check(config.query_limit, req.ip).then(() => {
 		var username = req.body.username;
 		var password = req.body.password;
 		userdb.one().make((filter) => {
@@ -84,7 +84,7 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-	queryLimiter.consume(req.ip).then(() => {
+	queryLimiter.check(config.query_limit ,req.ip).then(() => {
 		argon2.hash(req.body.password).then((hash) => {
 			const credentials = {
 				"username": req.body.username,
