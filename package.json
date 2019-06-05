@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/BorderKontrol/nodeChate#readme",
   "devDependencies": {
-    "html-minifier": "^3.5.21",
+    "html-minifier": "^4.0.0",
     "purify-css": "^1.2.6",
-    "uglify-js": "^3.4.9"
+    "uglify-js": "^3.6.0"
   },
   "dependencies": {
     "@phc/argon2": "^1.0.5",
