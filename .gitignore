@@ -65,3 +65,6 @@ typings/
 
 # nosql databases
 *.nosql
+
+# user config file
+config.json
