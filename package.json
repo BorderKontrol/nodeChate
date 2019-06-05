@@ -26,11 +26,11 @@
   },
   "dependencies": {
     "@phc/argon2": "^1.0.5",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "lambda-rate-limiter": "^2.4.6",
     "nosql": "^6.1.0",
     "popper.js": "^1.14.6",
