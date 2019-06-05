@@ -21,7 +21,7 @@
   "homepage": "https://github.com/BorderKontrol/nodeChate#readme",
   "devDependencies": {
     "html-minifier": "^4.0.0",
-    "purify-css": "^1.2.6",
+    "purify-css": "^1.2.5",
     "uglify-js": "^3.6.0"
   },
   "dependencies": {
