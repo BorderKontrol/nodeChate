@@ -5,7 +5,7 @@ NODE="node"
 NPM="npm"
 TMPDIR := $(shell mktemp -d)
 
-all: dirs npm_dependencies min-html min-css min-js
+all: dirs npm_dependencies min-html min-css min-js genkey
 
 min-html:
 	$(NODE) $(CURDIR)/node_modules/.bin/html-minifier --collapse-whitespace --decode-entities --remove-attribute-quotes --remove-comments \
@@ -31,6 +31,11 @@ min-js:
 	$(CURDIR)/node_modules/jquery/dist/jquery.slim.js \
 	$(CURDIR)/static/own.js \
 	> $(CURDIR)/build/all.min.js
+
+genkey:
+ifeq (,$(wildcard $(CURDIR)/private/key.json))
+	printf '{\n	"key": "'$$(openssl rand -base64 45)'"\n}\n' >> $(CURDIR)/private/key.json
+endif
 	
 clean:
 	rm -rvf $(CURDIR)/node_modules 
