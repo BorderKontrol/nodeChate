@@ -30,7 +30,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lambda-rate-limiter": "^2.4.6",
     "nosql": "^6.1.0",
     "popper.js": "^1.14.6",
